@@ -699,6 +699,7 @@ void gli_get_builtin_font(int idx, const unsigned char **ptr, unsigned int *len)
 #endif
 
 void gli_initialize_fonts(void);
+void gli_reinitialize_fonts(void);
 void gli_draw_pixel(int x, int y, unsigned char alpha, unsigned char *rgb);
 void gli_draw_pixel_lcd(int x, int y, unsigned char *alpha, unsigned char *rgb);
 void gli_draw_clear(unsigned char *rgb);

@@ -184,7 +184,6 @@ switch $(PLATFORM)
         RM = "touch -c" ;
         CCFLAGS = -Wno-pointer-sign $(MAINARCH) ;
         PKGCONFIG = "pkg-config freetype2 libpng" ;
-
         GARGLKCCFLAGS = "`$(PKGCONFIG) --cflags`" ;
         SHRLINKLIBS += "`$(PKGCONFIG) --libs`" -lz ;
         # Homebrew's JPEG library package is missing some configuration files.

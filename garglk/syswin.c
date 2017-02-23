@@ -70,6 +70,49 @@ static char *winfilters[] =
     "All files (*.*)\0*.*\0\0",
 };
 
+#define MaxBuffer 1024
+
+void glk_mplayer(char *video)
+{
+    char *argumentos = "mplayer.exe -vo direct3d -fs -nofontconfig ";
+    char cmd[MaxBuffer];
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+
+    memset(&pi, 0, sizeof pi);
+    memset(&si, 0, sizeof si);
+
+    strcpy(cmd, argumentos);
+    strcat(cmd, video);
+
+    CreateProcess(NULL,
+                  cmd,
+                  NULL,
+                  NULL,
+                  FALSE,
+                  CREATE_NO_WINDOW,
+                  NULL,
+                  NULL,
+                  &si,
+                  &pi
+    );
+
+    WaitForSingleObject(pi.hProcess, INFINITE);
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
+}
+
+void glk_get_screen_size(glui32 *width, glui32 *height)
+{
+    int wid = GetSystemMetrics(SM_CXSCREEN);
+    int hgt = GetSystemMetrics(SM_CYSCREEN);
+
+    if (width)
+        *width = (glui32) wid;
+    if (height)
+        *height = (glui32) hgt;
+}
+
 void glk_request_timer_events(glui32 millisecs)
 {
     if (timerid != -1)
@@ -347,7 +390,7 @@ void winopen()
             WS_CLIPCHILDREN;
     }
 
-    hwndframe = CreateWindow("XxFrame",
+    hwndframe = CreateWindowEx(0, "XxFrame",
         NULL, // window caption
         dwStyle, // window style
         CW_USEDEFAULT, // initial x position
