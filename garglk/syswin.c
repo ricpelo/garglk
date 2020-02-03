@@ -390,7 +390,7 @@ void winopen()
             WS_CLIPCHILDREN;
     }
 
-    hwndframe = CreateWindowEx(0, "XxFrame",
+    hwndframe = CreateWindow("XxFrame",
         NULL, // window caption
         dwStyle, // window style
         CW_USEDEFAULT, // initial x position

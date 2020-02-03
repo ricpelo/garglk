@@ -7,7 +7,7 @@
 
 set -e
 
-[[ -e build/dist ]] && exit 1
+# [[ -e build/dist ]] && exit 1
 
 makensis="${HOME}/.wine/drive_c/Program Files (x86)/NSIS/makensis"
 nproc=$(getconf _NPROCESSORS_ONLN)
@@ -20,4 +20,4 @@ cp "/usr/lib/gcc/i686-w64-mingw32/${ver}/libstdc++-6.dll" "build/dist"
 cp "/usr/lib/gcc/i686-w64-mingw32/${ver}/libgcc_s_sjlj-1.dll" "build/dist"
 cp "/usr/i686-w64-mingw32/lib/libwinpthread-1.dll" "build/dist"
 
-wine "${makensis}" installer.nsi
+# wine "${makensis}" installer.nsi
